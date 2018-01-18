@@ -9,7 +9,7 @@
 
         var init = function() {
 
-            daysContainer = document.getElementsByClassName("days-container")[0];
+            daysContainer = document.getElementsByClassName("week-items-container")[0];
             hoursContainer = document.getElementsByClassName("hour-items-container")[0];
 
             input = new AgendaInput();
@@ -20,8 +20,8 @@
 
             if(e.dir === "v") {
                 hoursContainer.style.top = e.val + "px";
-            } else if (e.dir === "") {
-
+            } else if (e.dir === "h") {
+                daysContainer.style.left = e.val + "px";
             }
         }
 
@@ -119,12 +119,12 @@
             
                 touchPos.x = e.touches[0].screenX;
                 touchPos.y = e.touches[0].screenY;
-                mainAgenda.ontouchmove = onAgendaMove;
+                document.ontouchmove = onAgendaMove;
             } else {
             
                 touchPos.x = e.screenX;
                 touchPos.y = e.screenY;
-                mainAgenda.onmousemove = onAgendaMove;
+                document.onmousemove = onAgendaMove;
             }
             
         }
@@ -158,13 +158,11 @@
                 }
             }
             if(isDragging) {
-                // let t = parseFloat(dragAgenda.style.top.replace("px", ""));
-
                 
                 if(scrollDir === "v") {
                     if(!containerYPos) containerYPos = 0;
-                    let yVal = (touchPos.y - yPos) + containerYPos;
-                    
+                    let yVal =  containerYPos + ((touchPos.y - yPos) * -1);
+
                     if(yVal > 0) yVal = 0;
                     if(yVal < -(dragAgenda.offsetHeight - mainAgenda.offsetHeight)) {
                         yVal = -(dragAgenda.offsetHeight - mainAgenda.offsetHeight);
@@ -177,7 +175,7 @@
                     });
                 } else {
                     if(!containerXPos) containerXPos = 0;
-                    let xVal = (touchPos.x - xPos) + containerXPos;
+                    let xVal =  containerXPos + ((touchPos.x - xPos) * -1);
                     dragAgenda.style.left = xVal + "px";
                     callback({
                         dir: scrollDir,
@@ -194,7 +192,7 @@
             } else {
                 onItemClick(e);
             }
-            mainAgenda.onmousemove = null;
+            document.onmousemove = null;
         }
 
         var onItemClick = function (e) {
