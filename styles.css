@@ -1,0 +1,145 @@
+:root {
+    --grey01: #231313;
+    --grey02: #b0afaf;
+    --grey03: #f7f7f7;
+    --borderColor: #eeeeee;
+    --border: 1px solid var(--borderColor);
+}
+html, body {
+
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: var(--grey01);
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    overflow-y: hidden;
+}
+
+/* #console {
+    position: absolute;
+    display: block;
+    color: red;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+} */
+
+.grid-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 48px auto;
+    grid-template-rows: 64px 64px auto;
+    width: 100%;
+    height: 100%;
+    background-color: var(--grey03);
+}
+.month-container {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.month-container label {
+    font-size: 21px;
+    font-weight: 500;
+    color: var(--grey01);
+}
+
+.void {
+    background-color: var(--borderColor);
+    grid-column-start: 1;
+    grid-row-start: 2;
+}
+.days-container {
+    background-color: red;
+    grid-row-start: 2;
+    grid-column-start: 2;
+}
+
+.week-container {
+    box-sizing: border-box;
+    background-color: var(--grey03);
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border: var(--border);
+}
+
+.day-item {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    flex: 1;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--grey02);
+    padding: 5px;
+    border: var(--border);
+}
+.day-item span {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.hours-container {
+    box-sizing: border-box;
+    grid-column-start: 1;
+    grid-row-start: 3;
+    border: var(--border);
+    overflow-y: hidden;
+}
+
+.hour-items-container {
+
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.hour-item {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    height: 64px;
+    font-size: 16px;
+    text-align: right;
+    font-weight: 700;
+    padding-right: 2px;
+    color: var(--grey02);
+    border: var(--border);
+}
+.hour-item span {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.agenda-container {
+    grid-column-start: 2;
+    grid-row-start: 3;
+    overflow-y: hidden;
+}
+
+.agenda-items-container {
+    box-sizing: border-box;
+    position: relative;
+    display: grid;
+    width: 100%;
+
+    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-rows: 64px;
+    border: var(--border);
+}
+
+.agenda-item {
+    box-sizing: border-box;
+    display: block;
+    height: 64px;
+    border: var(--border);
+    cursor: pointer;
+}
